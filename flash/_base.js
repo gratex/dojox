@@ -1,8 +1,6 @@
-dojo.provide("dojox.flash._base");
-dojo.experimental("dojox.flash");
+define(["dojo/window"], // for dojo.window.getBox(), needed by dojox.flash.Embed.center()
+function(){
 
-// for dojo.window.getBox(), needed by dojox.flash.Embed.center()
-dojo.require("dojo.window");
 
 dojox.flash = {
 	// summary:
@@ -766,3 +764,4 @@ dojox.flash.Install.prototype = {
 dojox.flash.info = new dojox.flash.Info();
 
 // vim:ts=4:noet:tw=0:
+});
