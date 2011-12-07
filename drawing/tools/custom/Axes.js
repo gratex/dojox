@@ -176,7 +176,7 @@ var Axes = oo.declare(
 				x:pt2.x,
 				y:pt2.y,
 				width:20
-			}
+			};
 		},
 		setLabel: function(/* ? String*/value){
 			// summary:
@@ -277,7 +277,7 @@ var Axes = oo.declare(
 			this._isBeingModified = false;
 			//this.deselect();
 			this._toggleSelected();
-			console.log("before:", Math.ceil(this.points[1].x), " x ", Math.ceil(this.points[1].y))
+			console.log("before:", Math.ceil(this.points[1].x), " x ", Math.ceil(this.points[1].y));
 
 			var o = this.points[0];
 			var c = this.points[1];
@@ -424,7 +424,7 @@ var Axes = oo.declare(
 				y2:p[0].y,
 				x3:p[2].x,
 				y3:p[2].y
-			}
+			};
 			if(this.style.zAxisEnabled){
 				d.x4 = p[3].x;
 				d.y4 = p[3].y;
@@ -464,7 +464,7 @@ var Axes = oo.declare(
 					y2:pt.y,
 					x3:ox,
 					y3:oy
-				}
+				};
 				if(this.style.zAxisEnabled){
 					this.data.x4 = o.x4 = zpt.x;
 					this.data.y4 = o.y4 = zpt.y;

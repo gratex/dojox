@@ -129,7 +129,7 @@ function(dojo, defaults, registry, keys, Mouse, Canvas, Undo, Anchors, Stencil, 
 			// If Dijit is available in the page, register with it
 			if(dijit && dijit.registry){
 				dijit.registry.add(this);
-				console.log("using dijit")
+				console.log("using dijit");
 			}else{
 				// else fake dijit.byId
 				// FIXME: This seems pretty hacky.
@@ -313,7 +313,7 @@ function(dojo, defaults, registry, keys, Mouse, Canvas, Undo, Anchors, Stencil, 
 				return false;
 			}
 			if(options && !options.data && !options.points){
-				options = {data:options}
+				options = {data:options};
 			}
 			if(!this.stencilTypes[type]){
 				if(type != "tooltip"){
@@ -349,7 +349,7 @@ function(dojo, defaults, registry, keys, Mouse, Canvas, Undo, Anchors, Stencil, 
 				return false;
 			}
 			if(options && !options.data && !options.points){
-				options = {data:options}
+				options = {data:options};
 			}
 			var s = this.stencils.register( new this.stencilTypes[type](this.getShapeProps(options)));
 			// need this or not?

@@ -47,7 +47,7 @@ var Arrow = oo.declare(
 			return {
 				x:pt.x,
 				y:pt.y
-			}
+			};
 		},
 		
 		onUp: function(/*EventObject*/obj){
