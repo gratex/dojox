@@ -85,7 +85,7 @@ define([
 		constructor: function(props, node){
 			this.properties = props.properties || {
 				fontSize: 2.75
-			}
+			};
 		},
 
 		postCreate: function(){
