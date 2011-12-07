@@ -324,7 +324,7 @@ function(dojo, oo, defaults){
 
 				//console.log("stencil.onSelect", stencil);
 				if(!stencil){
-					console.error("null stencil is not selected:", this.stencils)
+					console.error("null stencil is not selected:", this.stencils);
 				}
 				if(this.selectedStencils[stencil.id]){ return; }
 				this.selectedStencils[stencil.id] = stencil;
