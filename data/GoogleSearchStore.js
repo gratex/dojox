@@ -647,5 +647,5 @@ return {
 	LocalSearch: LocalSearchStore,
 	BlogSearch: BlogSearchStore,
 	WebSearch: WebSearchStore
-	}
+	};
 });

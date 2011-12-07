@@ -504,7 +504,7 @@ define(["dojo/_base/lang", "dojo/_base/declare", "dojo/_base/connect", "dojo/_ba
 			return {
 				x: x,
 				y: circle.cy + radius * Math.sin(angle)
-			}
+			};
 		},
 		
 		_getObjectLength: function(obj){

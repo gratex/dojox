@@ -80,7 +80,7 @@ PersevereStore.getStores = function(/*String?*/ path,/*Boolean?*/ sync){
 										response.result;
 								});
 								return deferred;
-							}
+							};
 						})(j);
 					}
 				}
