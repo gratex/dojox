@@ -231,7 +231,7 @@ define([
 					}
 				}
 			}
-			if(binding){
+			if(binding && binding instanceof dojo.Stateful){
 				if(lang.isFunction(binding.toPlainObject)){
 					this.binding = binding;
 					if(this[this._relTargetProp || "target"] !== binding){
