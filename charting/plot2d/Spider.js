@@ -276,7 +276,7 @@ define(["dojo/_base/lang", "dojo/_base/declare", "dojo/_base/connect", "dojo/_ba
 					}
 				}
 			}
-			//fix for plot with one series
+			//fix  for plot with one series
 			if(this.series.length == 1){
 				var run = this.series[0].data;
 				if(run !== null){
@@ -290,7 +290,7 @@ define(["dojo/_base/lang", "dojo/_base/declare", "dojo/_base/connect", "dojo/_ba
 					}
 				}
 			}
-			//eof for plot with one series
+			//eof  for plot with one series
 			//text
 			len = this._getObjectLength(this.datas);
 			var textGroup = s.createGroup(), k = 0;
