@@ -330,7 +330,7 @@ define(["dojo/_base/lang", "dojo/_base/declare", "dojo/_base/connect", "dojo/_ba
 						max = data.max;
 						distance = max - min;
 						var entry = run[key], end = start + 2 * Math.PI * k / len;
-							point = this._getCoordinate(circle, r*(ro + (1-ro)*(entry-min)/distance), end, dim);
+							point = this._getCoordinate(circle, r*(ro + (1-ro)*(entry-min)/(distance === 0 ? min : distance)), end, dim);
 						seriePoints.push(point);
 						tipData.push({sname: serieEntry.name, key: key, data: entry});
 						k++;
