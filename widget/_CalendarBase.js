@@ -215,6 +215,7 @@ define([
 				}
 				return true;
 			}
+			this.onExecute(); 
 			return false;
 		},
 
@@ -380,6 +381,9 @@ define([
 			this._slideTable(child, amount, function(){
 				child.set("value", month);
 			});
+		}, 
+		
+		onExecute:function(){
 		}
 	});
 });
