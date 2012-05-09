@@ -99,7 +99,7 @@ return declare("dojox.widget.Standby", [_Widget, _TemplatedMixin],{
 	templateString:
 		"<div>" +
 			"<div style=\"display: none; opacity: 0; z-index: 9999; " +
-				"position: absolute; cursor:wait;\" dojoAttachPoint=\"_underlayNode\"></div>" +
+				"position: absolute;\" dojoAttachPoint=\"_underlayNode\"></div>" +
 			"<img src=\"${image}\" style=\"opacity: 0; display: none; z-index: -10000; " +
 				"position: absolute; top: 0px; left: 0px; cursor:wait;\" "+
 				"dojoAttachPoint=\"_imageNode\">" +
@@ -195,6 +195,7 @@ return declare("dojox.widget.Standby", [_Widget, _TemplatedMixin],{
 		// summary:
 		//		Function to display the blocking overlay and busy/status icon or text.
 		if(!this._displayed){
+			domStyle.set(this.domNode.getElementsByTagName('div')[0], 'cursor', 'wait');
 			if(this._anim){
 				this._anim.stop();
 				delete this._anim;
@@ -221,6 +222,7 @@ return declare("dojox.widget.Standby", [_Widget, _TemplatedMixin],{
 				clearInterval(this._resizeCheck);
 				this._resizeCheck = null;
 			}
+			domStyle.set(this.domNode.getElementsByTagName('div')[0], 'cursor', 'default');
 		}
 	},
 
@@ -318,7 +320,7 @@ return declare("dojox.widget.Standby", [_Widget, _TemplatedMixin],{
 					//are any parent zIndexs to overlay.
 					var cNode = target.parentNode;
 					var oldZi = -100000;
-					while(cNode && cNode !== baseWindow.body()){
+					while(cNode && cNode !== baseWindow.body() && cNode.nodeName !== "#document-fragment"){
 						zi = domStyle.get(cNode, "zIndex");
 						if(!zi || zi === "auto"){
 							cNode = cNode.parentNode;
@@ -346,7 +348,7 @@ return declare("dojox.widget.Standby", [_Widget, _TemplatedMixin],{
 			var pn = target.parentNode;
 			if(pn && pn !== baseWindow.body() &&
 				target !== baseWindow.body() &&
-				target !== baseWindow.doc){
+				target !== baseWindow.doc && pn.nodeName !== "#document-fragment"){
 				
 				// If the parent is the body tag itself,
 				// we can avoid all this, the body takes
