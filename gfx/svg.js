@@ -114,6 +114,25 @@ function(lang, has, win, dom, declare, arr, domGeom, domAttr, Color, g, gs, path
 			gs.Shape.prototype.destroy.apply(this, arguments);
 		},
 
+		destroy: function(){
+			if(this.fillStyle && "type" in this.fillStyle){
+				var fill = this.rawNode.getAttribute("fill"),
+					ref  = svg.getRef(fill);
+				if(ref){
+					ref.parentNode.removeChild(ref);
+				}
+			}
+			if(this.clip){
+				var clipPathProp = this.rawNode.getAttribute("clip-path");
+				if(clipPathProp){
+					var clipNode = dom.byId(clipPathProp.match(/gfx_clip[\d]+/)[0]);
+					clipNode && clipNode.parentNode.removeChild(clipNode);
+				}
+			}
+			this.rawNode = null;
+			gs.Shape.prototype.destroy.apply(this, arguments);
+		},
+
 		setFill: function(fill){
 			// summary:
 			//		sets a fill object (SVG)
@@ -554,11 +573,29 @@ function(lang, has, win, dom, declare, arr, domGeom, domAttr, Color, g, gs, path
 			r.setAttribute("text-rendering", textRenderingFix);
 
 			// update the text content
-			if(r.firstChild){
-				r.firstChild.nodeValue = s.text;
-			}else{
-				r.appendChild(_createTextNode(s.text));
+//fixed problem with multilines in SVG
+//see: http://bugs.dojotoolkit.org/ticket/10973
+//			if(r.firstChild){
+//				r.firstChild.nodeValue = s.text;
+//			}else{
+//				r.appendChild(_createTextNode(s.text));
+//			}
+			// update the text content, consider multiple lines
+			while (r.firstChild) {
+				r.removeChild(r.firstChild);
 			}
+			if (s.text) {
+				var texts = s.text.split("\n"), lineHeight = 1.1 * parseInt(document.defaultView.getComputedStyle(r, "").getPropertyValue("font-size"), 10);
+				for ( var i = 0, n = texts.length; i < n; i++) {
+					var tspan = _createElementNS(svg.xmlns.svg, "tspan");
+					tspan.setAttribute("dy", i ? lineHeight : -(texts.length - 1) * lineHeight / 2);
+					tspan.setAttribute("x", s.x);
+					tspan.appendChild(_createTextNode(texts[i]));
+					r.appendChild(tspan);
+				}
+			}
+//EOF fix			
+			
 			return this;	// self
 		},
 		getTextWidth: function(){
