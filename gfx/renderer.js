@@ -78,13 +78,23 @@ define(["./_base","dojo/_base/lang", "dojo/_base/sniff", "dojo/_base/window", "d
 			}
 
 			function loadRenderer(){
-				require(["dojox/gfx/" + renderer], function(module){
+				var _load = function(module){
 					g.renderer = renderer;
 					// memorize the renderer module
 					currentRenderer = module;
 					// now load it
 					load(module);
-				});
+				}
+				//in case of VML, we need to wait for domReady
+				if(renderer === "vml"){
+					require(["dojox/gfx/" + renderer, "dojo/domReady!"], function(module){
+						_load(module);
+					});
+				}else{
+					require(["dojox/gfx/" + renderer], function(module){
+						_load(module);
+					});
+				}
 			}
 			if(renderer == "svg" && typeof window.svgweb != "undefined"){
 				window.svgweb.addOnLoad(loadRenderer);
