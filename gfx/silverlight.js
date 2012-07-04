@@ -84,8 +84,8 @@ define(["dojo/_base/kernel", "dojo/_base/lang", "dojo/_base/declare", "dojo/_bas
 						this.fillStyle = f = g.makeParameters(g.defaultLinearGradient, fill);
 						var lgb = p.createFromXaml("<LinearGradientBrush/>");
 						lgb.mappingMode = "Absolute";
-						lgb.startPoint = f.x1 + "," + f.y1;
-						lgb.endPoint = f.x2 + "," + f.y2;
+						lgb.startPoint = (f.x1 - this.shape.x) + "," + (f.y1 - this.shape.y);
+						lgb.endPoint = (f.x2 - this.shape.x) + "," + (f.y2 - this.shape.y);
 						arr.forEach(f.colors, function(c){
 							var t = p.createFromXaml("<GradientStop/>");
 							t.offset = c.offset;
