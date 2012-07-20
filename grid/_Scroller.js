@@ -2,9 +2,10 @@ define([
 	"dijit/registry",
 	"dojo/_base/declare",
 	"dojo/_base/lang",
+	"dojo/_base/sniff",
 	"./util",
 	"dojo/_base/html"
-], function(dijitRegistry, declare, lang, util, html){
+], function(dijitRegistry, declare, lang, has, util, html){
 
 	var indexInParent = function(inNode){
 		var i=0, n, p=inNode.parentNode;
@@ -250,6 +251,9 @@ define([
 		resize: function(){
 			if(this.scrollboxNode){
 				this.windowHeight = this.scrollboxNode.clientHeight;
+			}
+			if ((this.height != null) && (has('chrome') || has('ie'))) {
+				this.height++;
 			}
 			for(var i=0; i<this.colCount; i++){
 				//We want to have 1px in height min to keep scroller.  Otherwise can't scroll
