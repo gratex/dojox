@@ -251,6 +251,13 @@ function(lang, declare, arr, Color, has, config, dom, domGeom, kernel, g, gs, pa
 				}
 				if(skew){
 					skew.on = "f";
+					
+					//lzboron, fixes vml problems with animations in IE, problem appears to be caused by extensions (select, titlepane)  
+					if (matrix.yy < 0.1) {
+						matrix.yy = 0.1;
+					}
+					
+					
 					var mt = matrix.xx.toFixed(8) + " " + matrix.xy.toFixed(8) + " " +
 						matrix.yx.toFixed(8) + " " + matrix.yy.toFixed(8) + " 0 0",
 						offset = Math.floor(matrix.dx).toFixed() + "px " + Math.floor(matrix.dy).toFixed() + "px",
@@ -263,8 +270,17 @@ function(lang, declare, arr, Color, has, config, dom, domGeom, kernel, g, gs, pa
 					if(isNaN(t)) t = 0;
 					if(isNaN(w) || !w) w = 1;
 					if(isNaN(h) || !h) h = 1;
+					
 					var origin = (-l / w - 0.5).toFixed(8) + " " + (-t / h - 0.5).toFixed(8);
-					skew.matrix =  mt;
+					try {
+						skew.matrix =  mt;
+					} catch (e) {
+						debugger;
+						console.log(e);
+						console.log(skew);
+						console.log(skew.matrix);
+						console.log(mt);
+					} 
 					skew.origin = origin;
 					skew.offset = offset;
 					skew.on = true;
