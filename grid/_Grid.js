@@ -378,6 +378,9 @@ define([
 				html.attr(this.domNode,"aria-readonly", "true");
 			}
 		},
+		
+		onBeingDestroyed: function() {
+		},
 
 		destroy: function(){
 			this.domNode.onReveal = null;
@@ -385,6 +388,8 @@ define([
 
 			// Fixes IE domNode leak
 			delete this._click;
+			
+			this.onBeingDestroyed();
 
 			if(this.scroller){
 				this.scroller.destroy();

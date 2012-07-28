@@ -97,6 +97,10 @@ var DataGrid = declare("dojox.grid.DataGrid", _Grid, {
 	
 	destroy: function(){
 		this.selection.destroy();
+		if(this.store && this._store_connects){
+			array.forEach(this._store_connects, this.disconnect, this);
+		}
+
 		this.inherited(arguments);
 	},
 
