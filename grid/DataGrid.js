@@ -246,6 +246,8 @@ var DataGrid = declare("dojox.grid.DataGrid", _Grid, {
 	_setQuery: function(query, queryOptions){
 		this.query = query;
 		this.queryOptions = queryOptions || this.queryOptions;
+		///reset grid pagination on new query
+		if(this.pagination) this.pagination.plugin._currentPage = 1;
 	},
 
 	_setStore: function(store){
