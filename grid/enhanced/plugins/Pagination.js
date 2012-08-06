@@ -373,6 +373,8 @@ var _Paginator = declare("dojox.grid.enhanced.plugins._Paginator", [_Widget, _Te
 			this._styleMsgNode(hh, html.marginBox(g.viewsNode).w, cgh - ph - hh);
 		}else{
 			var h = gh - ph - hh - padBorder;
+			// FIX, h (height) cannot be negative (IE7/8 error)
+			h = h < 0 ? 0 : h;
 			html.style(g.viewsNode, "height", h + "px");
 			var hasHScroller = array.some(g.views.views, function(v){
 				return v.hasHScrollbar();
