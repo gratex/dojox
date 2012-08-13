@@ -114,6 +114,15 @@ var Scrollpane = declare("dojox.layout.ScrollPane",[ContentPane, Templated],{
 	
 	},
 	
+	//overridden function from _Widget
+	_setFocusedAttr: function(val){
+		// Remove this method in 2.0 (or sooner), just here to set _focused == focused, for back compat
+		// (but since it's a private variable we aren't required to keep supporting it).
+		this._focused = val;
+		//commented because this function call evoke wrong _set function(_set: function(/* Float */n)) in ScrollPane caused error in IE8
+		//this._set("focused", val);
+	},
+	
 	_set: function(/* Float */n){
 		// summary:
 		//		set the pane's scroll offset, and position the virtual scroll helper
