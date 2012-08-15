@@ -78,6 +78,11 @@ define(["dijit/Tooltip", "dojo/_base/lang", "dojo/_base/declare", "dojo/_base/wi
 			// calculate relative coordinates and the position
 			var aroundRect = {type: "rect"}, position = ["after-centered", "before-centered"];
 			switch(o.element){
+				//added case options for spider chart
+				case "spider_poly":
+				case "spider_plot":
+	                return;
+				case "spider_circle":
 				case "marker":
 					aroundRect.x = o.cx;
 					aroundRect.y = o.cy;
