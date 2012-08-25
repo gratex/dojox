@@ -1,7 +1,11 @@
 define({ root:
 //begin v1.x content
 ({
-	label: "Select Files..."
+	label: "Select Files...",
+	index:"#",
+	type:"Type",
+	fileName:"File Name",
+	fileSize:"Size"
 })
 //end v1.x content
 ,

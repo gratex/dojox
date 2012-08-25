@@ -7,8 +7,9 @@ define([
 	"dojo/_base/array",
 	"dijit/_base/manager",
 	"dojox/form/uploader/_Base",
-	"dojo/text!../resources/UploaderFileList.html"
-],function(fx, domStyle, domClass, declare, lang, arrayUtil, manager, Base, template){
+	"dojo/text!../resources/UploaderFileList.html",
+	"dojo/i18n!dojox/form/nls/Uploader"
+],function(fx, domStyle, domClass, declare, lang, arrayUtil, manager, Base, template, i18n){
 
 return declare("dojox.form.uploader.FileList", Base, {
 	// summary:
@@ -30,19 +31,19 @@ return declare("dojox.form.uploader.FileList", Base, {
 
 	// headerIndex: String
 	//		The label for the index column.
-	headerIndex:"#",
+	headerIndex:i18n.index,
 
 	// headerType: String
 	//		The label for the file type column.
-	headerType:"Type",
+	headerType:i18n.type,
 
 	// headerFilename: String
 	//		The label for the file name column.
-	headerFilename:"File Name",
+	headerFilename:i18n.fileName,
 
 	// headerFilesize: String
 	//		The label for the file size column.
-	headerFilesize:"Size",
+	headerFilesize:i18n.fileSize,
 
 	_upCheckCnt:0,
 	rowAmt:0,
