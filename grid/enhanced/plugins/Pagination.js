@@ -172,7 +172,7 @@ var _Focus = declare("dojox.grid.enhanced.plugins.pagination._Focus", null, {
 			var dir = step > 0 ? -1 : 1,
 				tabindex = parseInt(this._focusedNode.getAttribute('tabindex'), 10) + dir;
 			while(tabindex >= -3 && tabindex < 0){
-				node = query('[tabindex=' + tabindex + ']', this._pager.domNode)[0];
+				node = query('[tabindex="' + tabindex + '"]', this._pager.domNode)[0];
 				if(node){
 					break;
 				}else{
@@ -193,7 +193,7 @@ var _Focus = declare("dojox.grid.enhanced.plugins.pagination._Focus", null, {
 		var node, dir = step > 0 ? -1 : 1,
 			tabindex = parseInt(this._focusedNode.getAttribute('tabindex'), 10) + dir;
 		while(tabindex >= -3 && tabindex < 0){
-			node = query('[tabindex=' + tabindex + ']', this._pager.domNode)[0];
+			node = query('[tabindex="' + tabindex + '"]', this._pager.domNode)[0];
 			if(node){
 				break;
 			}else{
