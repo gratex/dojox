@@ -252,9 +252,7 @@ define([
 			if(this.scrollboxNode){
 				this.windowHeight = this.scrollboxNode.clientHeight;
 			}
-			if ((this.height != null) && (has('chrome') || has('ie'))) {
-				this.height++;
-			}
+			
 			for(var i=0; i<this.colCount; i++){
 				//We want to have 1px in height min to keep scroller.  Otherwise can't scroll
 				//and see header in empty grid.
