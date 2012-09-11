@@ -283,8 +283,8 @@ define([
 			this.pageHeights[lastPage] = lastPageHeight;
 			return lastPageHeight;
 		},
-		updateContentHeight: function(inDh){
-			this.height += inDh;
+		updateContentHeight: function(h){
+			this.height = h;
 			this.resize();
 		},
 		updatePageHeight: function(inPageIndex, fromBuild, fromAsynRendering){
@@ -296,7 +296,7 @@ define([
 				}
 				this.pageHeights[inPageIndex] = h;
 				if(oh != h){
-					this.updateContentHeight(h - oh);
+					this.updateContentHeight(h);
 					var ah = this.grid.get("autoHeight");
 					if((typeof ah == "number" && ah > this.rowCount)||(ah === true && !fromBuild)){
 						if(!fromAsynRendering){
