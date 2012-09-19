@@ -696,6 +696,7 @@ define([
 					colSpan = cell.colSpan || 1;
 					for(var y=0; y<rowSpan; y++){
 						for(var s=0; s<colSpan; s++){
+							if(!this.map[j+y]){this.map[j+y] = [];}
 							this.map[j+y][x+s] = this.map[j][x];
 						}
 					}
