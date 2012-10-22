@@ -21,10 +21,10 @@ define([
 		postCreate: function(){
 			// summary:
 			//		Constructs the view
-			this.cloneClass(".dojoxCalendarYearTemplate", 3);
-			this.cloneClass(".dojoxCalendarYearGroupTemplate", 2);
+			this.cloneClass(".dojoxWidgetCalendarYearTemplate", 3);
+			this.cloneClass(".dojoxWidgetCalendarYearGroupTemplate", 2);
 			this._populateYears();
-			this.addFx(".dojoxCalendarYearLabel", this.domNode);
+			this.addFx(".dojoxWidgetCalendarYearLabel", this.domNode);
 		},
 
 		_setValueAttr: function(value){
@@ -42,7 +42,7 @@ define([
 		onClick: function(evt){
 			// summary:
 			//		Handles clicks on year values.
-			if(!domClass.contains(evt.target, "dojoxCalendarYearLabel")){event.stop(evt); return;}
+			if(!domClass.contains(evt.target, "dojoxWidgetCalendarYearLabel")){event.stop(evt); return;}
 			var year = Number(evt.target.innerHTML);
 			var date = this.get("value");
 			date.setYear(year);

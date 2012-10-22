@@ -22,7 +22,7 @@ define([
 
 		// headerClass: String
 		//		Specifies the CSS class to apply to the header node for this view.
-		headerClass: "dojoxCalendarMonthHeader",
+		headerClass: "dojoxWidgetCalendarMonthHeader",
 
 		// displayedYear: String 
 		//              The current year being displayed 
@@ -31,12 +31,12 @@ define([
 		postCreate: function(){
 			// summary:
 			//		Constructs the view
-			this.cloneClass(".dojoxCalendarMonthTemplate", 3);
-			this.cloneClass(".dojoxCalendarMonthGroupTemplate", 2);
+			this.cloneClass(".dojoxWidgetCalendarMonthTemplate", 3);
+			this.cloneClass(".dojoxWidgetCalendarMonthGroupTemplate", 2);
 			this._populateMonths();
 
 			// Add visual effects to the view, if any have been mixed in
-			this.addFx(".dojoxCalendarMonthLabel", this.domNode);
+			this.addFx(".dojoxWidgetCalendarMonthLabel", this.domNode);
 		},
 
 		_setValueAttr: function(value){
@@ -54,7 +54,7 @@ define([
 		onClick: function(evt){
 			// summary:
 			//		Handles clicks on month names
-			if(!domClass.contains(evt.target, "dojoxCalendarMonthLabel")){event.stop(evt); return;}
+			if(!domClass.contains(evt.target, "dojoxWidgetCalendarMonthLabel")){event.stop(evt); return;}
 			var parentNode = evt.target.parentNode;
 			var month = parentNode.cellIndex + (parentNode.parentNode.rowIndex * 4);
 			var date = this.get("value");

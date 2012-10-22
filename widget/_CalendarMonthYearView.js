@@ -109,7 +109,7 @@ define([
 				currMonth = monthNames[this.get("value").getMonth()],
 				displayedYear = this.get("displayedYear");
 
-			query(".dojoxCalendarMonthLabel", this.monthContainer).forEach(lang.hitch(this, function(node, cnt){
+			query(".dojoxWidgetCalendarMonthLabel", this.monthContainer).forEach(lang.hitch(this, function(node, cnt){
 				this._setText(node, monthNames[cnt]);
 				match = ((currMonth === monthNames[cnt]) && (currYear === displayedYear));
 				// If this month in this year, style it accordingly.
