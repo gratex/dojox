@@ -217,7 +217,9 @@ define([
 				parentBinding = parentBinding || this._getParentBindingFromDOM();
 				if(parentBinding){
 					binding = lang.getObject("" + ref, false, parentBinding);
-				}else{
+				}
+				//AR: commented out to prevet lookup of the binding in global scope
+				/*else{
 					try{
 						var b = lang.getObject("" + ref) || {};
 						if(lang.isFunction(b.set) && lang.isFunction(b.watch)){
@@ -229,7 +231,7 @@ define([
 								"' widget with illegal ref not evaluating to a dojo/Stateful node: '" + ref + "'");
 						}
 					}
-				}
+				}*/
 			}
 			if(binding && binding instanceof dojo.Stateful){
 				if(lang.isFunction(binding.toPlainObject)){
