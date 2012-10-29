@@ -67,6 +67,13 @@ define([
 			 resolvedSource = resolve(source, relTarget),
 			 resolvedTarget = resolve(target, relTarget);
 
+			//AR, JU: added feature to ensure clearing fields, no value is found in source
+            //-------------
+            if((!resolvedSource || !(lang.isFunction(resolvedSource.get) ? resolvedSource.get(sourceProp) : resolvedSource [sourceProp])) && resolvedTarget && resolvedTarget.reset){
+                resolvedTarget.reset();
+            }
+            //-------------
+			
 			if(has("mvc-bindings-log-api") && (!resolvedSource || /^rel:/.test(source) && !parent)){ logResolveFailure(source, sourceProp); }
 			if(has("mvc-bindings-log-api") && (!resolvedTarget || /^rel:/.test(target) && !parent)){ logResolveFailure(target, targetProp); }
 			if(!resolvedSource || !resolvedTarget || (/^rel:/.test(source) || /^rel:/.test(target)) && !parent){ return; }
