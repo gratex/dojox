@@ -58,6 +58,7 @@ var formCheckedMultiSelectItem = declare("dojox.form._CheckedMultiSelectItem", [
 			{type: "checkbox", baseClass: "dijitCheckBox"} :
 			{type: "radio", baseClass: "dijitRadio"};
 		this.disabled = this.option.disabled = this.option.disabled||false;
+		this.readOnly = this.option.readOnly = this.option.readOnly||false;
 		this.inherited(arguments);
 	},
 
