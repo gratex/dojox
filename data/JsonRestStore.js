@@ -186,7 +186,9 @@ var JsonRestStore = declare("dojox.data.JsonRestStore", ServiceStore,
 			//	If the desire is to delete only one reference, unsetAttribute or
 			//	setValue is the way to go.
 			var checked = [];
-			var store = dataExtCfg._getStoreForItem(item) || this;
+//			A.K. caused problem when two or more stores have same url(reason fo more stores different insert, update attributes)
+//			var store = dataExtCfg._getStoreForItem(item) || this;
+			var store = this || dataExtCfg._getStoreForItem(item);
 			if(this.referenceIntegrity){
 				// cleanup all references
 				rpcJsonRest._saveNotNeeded = true;
@@ -207,7 +209,8 @@ var JsonRestStore = declare("dojox.data.JsonRestStore", ServiceStore,
 										(toSplice = toSplice || []).push(i);
 									}else{
 										// property, just delete it.
-										(dataExtCfg._getStoreForItem(parent) || store).unsetAttribute(parent, i);
+//										(dataExtCfg._getStoreForItem(parent) || store).unsetAttribute(parent, i);
+										(store || dataExtCfg._getStoreForItem(parent)).unsetAttribute(parent, i);
 									}
 								}
 							}else{
@@ -218,7 +221,8 @@ var JsonRestStore = declare("dojox.data.JsonRestStore", ServiceStore,
 									}
 									if(typeof value.__checked == 'object' && parent != index){
 										// if it is a modified array, we will replace it
-										(dataExtCfg._getStoreForItem(parent) || store).setValue(parent, i, value.__checked);
+//										(dataExtCfg._getStoreForItem(parent) || store).setValue(parent, i, value.__checked);
+										(store || dataExtCfg._getStoreForItem(parent)).setValue(parent, i, value.__checked);
 									}
 								}
 							}
@@ -281,7 +285,8 @@ var JsonRestStore = declare("dojox.data.JsonRestStore", ServiceStore,
 			//		sets 'attribute' on 'item' to 'value'
 
 			var old = item[attribute];
-			var store = item.__id ? dataExtCfg._getStoreForItem(item) : this;
+//			var store = item.__id ? dataExtCfg._getStoreForItem(item) : this;
+			var store = item.__id ? this : dataExtCfg._getStoreForItem(item);
 			if(jsonSchema && store.schema && store.schema.properties){
 				// if we have a schema and schema validator available we will validate the property change
 				jsonSchema.mustBeValid(jsonSchema.checkPropertyChange(value,store.schema.properties[attribute]));
