@@ -66,13 +66,6 @@ define([
 			var relTarget = parent && (lang.isFunction(parent.get) ? parent.get(relTargetProp) : parent[relTargetProp]),
 			 resolvedSource = resolve(source, relTarget),
 			 resolvedTarget = resolve(target, relTarget);
-
-			//AR, JU: added feature to ensure clearing fields, no value is found in source
-            //-------------
-            if((!resolvedSource || !(lang.isFunction(resolvedSource.get) ? resolvedSource.get(sourceProp) : resolvedSource [sourceProp])) && resolvedTarget && resolvedTarget.reset){
-                resolvedTarget.reset();
-            }
-            //-------------
 			
 			if(has("mvc-bindings-log-api") && (!resolvedSource || /^rel:/.test(source) && !parent)){ logResolveFailure(source, sourceProp); }
 			if(has("mvc-bindings-log-api") && (!resolvedTarget || /^rel:/.test(target) && !parent)){ logResolveFailure(target, targetProp); }
@@ -94,6 +87,13 @@ define([
 				// Start data binding
 				_handles["Two"] = sync(resolvedSource, sourceProp, resolvedTarget, targetProp, options); // dojox/mvc/sync.handle
 			}
+
+			//AR, JU: added feature to ensure clearing fields, no value is found in source
+            //-------------
+            if((!resolvedSource || !(lang.isFunction(resolvedSource.get) ? resolvedSource.get(sourceProp) : resolvedSource [sourceProp])) && resolvedTarget && resolvedTarget.reset){
+                resolvedTarget.reset();
+            }
+            //-------------
 		}
 
 		resolveAndBind();
