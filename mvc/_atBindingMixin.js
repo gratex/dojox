@@ -90,7 +90,7 @@ define([
 
 			//AR, JU: added feature to ensure clearing fields, no value is found in source
             //-------------
-            if((!resolvedSource || !(lang.isFunction(resolvedSource.get) ? resolvedSource.get(sourceProp) : resolvedSource [sourceProp])) && resolvedTarget && resolvedTarget.reset){
+            if((!resolvedSource || lang.isFunction(resolvedSource.get) ? resolvedSource.get(sourceProp) : resolvedSource [sourceProp] == null) && resolvedTarget && resolvedTarget.reset){
                 resolvedTarget.reset();
             }
             //-------------
