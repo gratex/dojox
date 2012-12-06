@@ -84,6 +84,10 @@ return declare('dojox.grid._ViewManager', null, {
 				// no need to normalize if we are the only one...
 				return;
 			}
+			// mbeliansky checkboxselector with spanned cells
+			// Rendering bug fix (see below) do not work with spanned cells in chrome
+			// Check if we have spanned cells, do not increase height than
+			var hasSpan = false;
 			for(var i=0, n; (n=inRowNodes[i]); i++){
 				// We only care about the height - so don't use marginBox.  This
 				// depends on the container not having any margin (which it shouldn't)
@@ -91,6 +95,7 @@ return declare('dojox.grid._ViewManager', null, {
 				// dojoxGridNonNormalizedCell class (like for row selectors)
 				if(!domClass.contains(n, "dojoxGridNonNormalizedCell")){
 					currHeights[i] = n.firstChild.offsetHeight;
+					hasSpan = hasSpan || !!(n.firstChild.firstChild.childElementCount - 1);
 					h =  Math.max(h, currHeights[i]);
 				}
 			}
@@ -98,7 +103,8 @@ return declare('dojox.grid._ViewManager', null, {
 	
 			//Work around odd FF3 rendering bug: #8864.
 			//A one px increase fixes FireFox 3's rounding bug for fractional font sizes.
-			if((has('chrome') || has('mozilla') || has('ie') > 8 ) && h){h++;}
+			//if((has('chrome') || has('mozilla') || has('ie') > 8 ) && h){h++;}
+			if((has('chrome') || has('mozilla') || has('ie')) && !hasSpan && h && this.grid._hasCheckBoxSelector){h++;}
 		}
 		for(i=0; (n=inRowNodes[i]); i++){
 			if(currHeights[i] != h){
