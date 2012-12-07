@@ -174,7 +174,8 @@ define([
 		var _watchHandles = [],
 		 excludes = [],
 		 list,
-		 constraints = lang.mixin({}, source.constraints, target.constraints),
+		 // JU: source and target mixed in constraints to be available in conterter functions
+		 constraints = lang.mixin({_source : source, _target : target}, source.constraints, target.constraints),
 		 bindDirection = (options || {}).bindDirection || mvc.both,
 		 equals = (options || {}).equals || sync.equals;
 
