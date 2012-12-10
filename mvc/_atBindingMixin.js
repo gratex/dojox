@@ -214,6 +214,8 @@ define([
 			if(this._started){
 				// If this widget has been started already, establish data binding immediately.
 				atWatchHandles[name] = bind(value.target, value.targetProp, this, name, {bindDirection: value.bindDirection, converter: value.converter, equals: value.equalsCallback});
+				//JU: save it to _refs anyway (for future use);
+				this._refs[name] = value;
 			}else{
 				// Otherwise, queue it up to this._refs so that _dbstartup() can pick it up.
 				this._refs[name] = value;
