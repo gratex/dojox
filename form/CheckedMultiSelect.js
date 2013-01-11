@@ -538,5 +538,10 @@ var formCheckedMultiSelect = declare("dojox.form.CheckedMultiSelect", FormSelect
 	}
 });
 
+//AR: for extensions 
+formCheckedMultiSelect.formCheckedMultiSelectItem=formCheckedMultiSelectItem;
+formCheckedMultiSelect.formCheckedMultiSelectMenu=formCheckedMultiSelectMenu;
+formCheckedMultiSelect.formCheckedMultiSelectMenuItem=formCheckedMultiSelectMenuItem;
+
 return formCheckedMultiSelect;
 });
