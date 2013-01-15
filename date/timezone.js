@@ -23,7 +23,7 @@ define(["dojo", "dojo/date", "dojo/date/locale", "dojo/_base/array", "dojo/_base
 					
 	// Our mins an maxes for years that we care about
 	var _minYear = 1835,
-		_maxYear = 2038;
+		_maxYear = 9999;
 	
 	var _loadedZones = {}, 
 		_zones = {},
