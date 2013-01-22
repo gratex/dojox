@@ -649,7 +649,12 @@ dojox.date.timezone.getAllZones = function(){
 					}
 				}
 			}
-			var zoneInfo = getZoneInfo(dt, tz);
+			try {
+				var zoneInfo = getZoneInfo(dt, tz);
+			} catch(e) {
+				console.warn('No Zone found for "' + tz + '" on ' + dt);
+				return {tzOffset: dt.getTimezoneOffset()};
+			}
 			var off = zoneInfo.zone[0];
 			// See if the offset needs adjustment
 			var rule = getRule(dt, zoneInfo);
