@@ -22,7 +22,7 @@ define(["dojo", "dojo/date", "dojo/date/locale", "dojo/_base/array", "dojo/_base
 					"southamerica.txt" ];
 					
 	// Our mins an maxes for years that we care about
-	var _minYear = 1835,
+	var _minYear = 100,
 		_maxYear = 10000;
 	
 	var _loadedZones = {}, 
