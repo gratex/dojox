@@ -1,14 +1,16 @@
 define(["dojo/_base/declare",
-        "dojox/storage/Provider"
-], function(declare, Provider) {
-	return declare("dojox.storage.CookieStorageProvider", [Provider], {
+        "dojox/storage/Provider",
+        "dojo/cookie",
+        "dojox/storage/manager"
+], function(declare, Provider, cookie, manager) {
+	var CookieStorageProvider= declare("dojox.storage.CookieStorageProvider", [Provider], {
 		store: null,
 
 		cookieName: 'dojoxStorageCookie',
 
 		storageLife: 730, // in days
 
-		_start: function(cookie,manager){
+		_start: function(){
 
 			this.store = dojo.fromJson(cookie(this.cookieName)) || {};
 
@@ -18,13 +20,11 @@ define(["dojo/_base/declare",
 		},
 
 		initialize: function(){
-			require(["dojo/cookie","dojox/storage/manager"], dojo.hitch(this,this._start));
+			this._start();
 		},
 
 		isAvailable: function(){ /*Boolean*/
-			require(["dojo/cookie"], function(cookie){
-				return cookie.isSupported();
-			});
+			return cookie.isSupported();			
 		},
 
 		put: function(	/*string*/ key,
@@ -198,10 +198,8 @@ define(["dojo/_base/declare",
 			}
 		}
 	});
-});
-
-require(["dojox/storage/manager",
-         "dojox/storage/CookieStorageProvider"
-], function(manager, CookieStorageProvider){
-		manager.register("dojox.storage.CookieStorageProvider", new CookieStorageProvider());
+	
+	manager.register("dojox.storage.CookieStorageProvider", new CookieStorageProvider());
+	
+	return CookieStorageProvider;
 });

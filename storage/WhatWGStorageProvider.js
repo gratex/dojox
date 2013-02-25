@@ -44,9 +44,8 @@ return dojo.declare("dojox.storage.WhatWGStorageProvider", [Provider], {
 	},
 	
 	isAvailable: function(){
-		try{
-			var myStorage = globalStorage[location.hostname];
-		}catch(e){
+		var myStorage = window.globalStorage && window.globalStorage[location.hostname];
+		if (!myStorage) {
 			this._available = false;
 			return this._available;
 		}
