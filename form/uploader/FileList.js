@@ -7,9 +7,8 @@ define([
 	"dojo/_base/array",
 	"dijit/_base/manager",
 	"dojox/form/uploader/_Base",
-	"dojo/text!../resources/UploaderFileList.html",
-	"dojo/i18n!dojox/form/nls/Uploader"
-],function(fx, domStyle, domClass, declare, lang, arrayUtil, manager, Base, template, i18n){
+	"dojo/text!../resources/UploaderFileList.html"
+],function(fx, domStyle, domClass, declare, lang, arrayUtil, manager, Base, template){
 
 return declare("dojox.form.uploader.FileList", Base, {
 	// summary:
