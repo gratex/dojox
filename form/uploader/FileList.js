@@ -7,8 +7,9 @@ define([
 	"dojo/_base/array",
 	"dijit/_base/manager",
 	"dojox/form/uploader/_Base",
-	"dojo/text!../resources/UploaderFileList.html"
-],function(fx, domStyle, domClass, declare, lang, arrayUtil, manager, Base, template){
+	"dojo/text!../resources/UploaderFileList.html",
+	"dojo/i18n!dojox/form/nls/Uploader"
+],function(fx, domStyle, domClass, declare, lang, arrayUtil, manager, Base, template, i18n){
 
 return declare("dojox.form.uploader.FileList", Base, {
 	// summary:
@@ -52,6 +53,16 @@ return declare("dojox.form.uploader.FileList", Base, {
 	postCreate: function(){
 		this.setUploader();
 		this.hideProgress();
+	},
+	
+	//AR: overide to provide localized table headers
+	buildRendering: function(){
+		this.headerIndex=i18n.index;
+		this.headerType=i18n.type;
+		this.headerFilename=i18n.fileName;
+		this.headerFilesize=i18n.fileSize;
+
+		this.inherited(arguments);
 	},
 
 	reset: function(){
