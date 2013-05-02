@@ -127,6 +127,7 @@ define([
 				//Listen for the values in a view to be selected
 				widget.on("valueSelected", lang.hitch(this, "_onDateSelected"));
 				widget.set("value", this.get('value'));
+				this.own(widget);
 			}, this);
 
 			if(this._views.length < 2){
