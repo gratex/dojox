@@ -1,7 +1,8 @@
 define([
 	"dojo/_base/lang",
 	"dojo/_base/fx",
-	"dojo/dom-style"
+	"dojo/dom-style",
+	"../Rotator" //AR: added dependency to Rotator, so we can be sure that 'dojox.widget.rotator' obj exists, see line 65
 ], function(lang, baseFx, domStyle){
 
 	// Constants used to identify which edge the pane slides in from.

@@ -4,7 +4,8 @@ define([
 	"dojo/_base/lang",
 	"dojo/dom-style",
 	"dojo/_base/fx",
-	"dojo/fx"
+	"dojo/fx",
+	"../Rotator" //AR: added dependency to Rotator, so we can be sure that 'dojox.widget.rotator' obj exists, see line 65
 ], function(array, connect, lang, domStyle, baseFx, fx) {
 
 	// Constants used to identify which edge the pane pans in from.
