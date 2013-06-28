@@ -85,6 +85,11 @@ define([
 				}
 			}else{
 				// Start data binding
+				//AR, LZ: added feature to ensure creating stateful for nested groups
+				if(!(sourceProp in resolvedSource) && resolvedTarget.declaredClass=="dojox.mvc.Group"){
+					resolvedSource[sourceProp]=new Stateful();
+				}
+				//-------------
 				_handles["Two"] = sync(resolvedSource, sourceProp, resolvedTarget, targetProp, options); // dojox/mvc/sync.handle
 			}
 
