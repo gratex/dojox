@@ -5,8 +5,9 @@ define([
 	"dojo/has",
 	"dojo/Stateful",
 	"./resolve",
-	"./sync"
-], function(array, lang, declare, has, Stateful, resolve, sync){
+	"./sync",
+	"./StatefulArray"
+], function(array, lang, declare, has, Stateful, resolve, sync, StatefulArray){
 	if(has("mvc-bindings-log-api")){
 		function getLogContent(/*dojo/Stateful*/ target, /*String*/ targetProp){
 			return [target._setIdAttr || !target.declaredClass ? target : target.declaredClass, targetProp].join(":");
@@ -87,7 +88,8 @@ define([
 				// Start data binding
 				//AR, LZ: added feature to ensure creating stateful for nested groups
 				if(!(sourceProp in resolvedSource) && resolvedTarget.declaredClass=="dojox.mvc.Group"){
-					resolvedSource[sourceProp]=new Stateful();
+					//TODO _isArray added temporarily, how to detect groups bound to arrays?
+					resolvedSource[sourceProp]=resolvedTarget._isArray?new StatefulArray():new Stateful();
 				}
 				//-------------
 				_handles["Two"] = sync(resolvedSource, sourceProp, resolvedTarget, targetProp, options); // dojox/mvc/sync.handle
