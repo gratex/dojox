@@ -34,9 +34,9 @@ define([
 			this.cloneClass(".dojoxCal-MY-G-Template", 5, ".dojoxCal-MY-btns");
 			this.monthContainer = this.yearContainer = this.myContainer;
 
-			var yClass = "dojoxCalendarYearLabel";
-			var dClass = "dojoxCalendarDecrease";
-			var iClass = "dojoxCalendarIncrease";
+			var yClass = "dojoxWidgetCalendarYearLabel";
+			var dClass = "dojoxWidgetCalendarDecrease";
+			var iClass = "dojoxWidgetCalendarIncrease";
 
 			query("." + yClass, this.myContainer).forEach(function(node, idx){
 				var clazz = iClass;
@@ -80,7 +80,7 @@ define([
 			this._populateMonths();
 
 			// Add visual effects to the view, if any have been mixed in
-			this.addFx(".dojoxCalendarMonthLabel,.dojoxCalendarYearLabel ", this.myContainer);
+			this.addFx(".dojoxWidgetCalendarMonthLabel,.dojoxWidgetCalendarYearLabel ", this.myContainer);
 		},
 
 		_setValueAttr: function(value){
@@ -140,7 +140,7 @@ define([
 					}
 				}
 
-				query(".dojoxCalendarMonthLabel", this.monthContainer)
+				query(".dojoxWidgetCalendarMonthLabel", this.monthContainer)
 					.forEach(lang.hitch(this, function(node, cnt){
 						domClass[(cnt < min || cnt > max) ? "add" : "remove"]
 							(node, 'dijitCalendarDisabledDate');
@@ -162,7 +162,7 @@ define([
 
 			this._displayedYear = dispYear;
 
-			var yearLabels = query(".dojoxCalendarYearLabel", this.yearContainer);
+			var yearLabels = query(".dojoxWidgetCalendarYearLabel", this.yearContainer);
 
 			var max = constraints && constraints.max ? constraints.max.getFullYear() - firstYear :	yearLabels.length;
 			var disabledClass = 'dijitCalendarDisabledDate';
@@ -193,7 +193,7 @@ define([
 
 		_updateSelectedYear: function(){
 			this._year = String((this._cachedDate || this.get("value")).getFullYear());
-			this._updateSelectedNode(".dojoxCalendarYearLabel", lang.hitch(this, function(node){
+			this._updateSelectedNode(".dojoxWidgetCalendarYearLabel", lang.hitch(this, function(node){
 				return this._year !== null && node.innerHTML == this._year;
 			}));
 		},
@@ -201,7 +201,7 @@ define([
 		_updateSelectedMonth: function(){
 			var month = (this._cachedDate || this.get("value")).getMonth();
 			this._month = month;
-			this._updateSelectedNode(".dojoxCalendarMonthLabel", function(node, idx){
+			this._updateSelectedNode(".dojoxWidgetCalendarMonthLabel", function(node, idx){
 				return idx == month;
 			});
 		},
@@ -235,21 +235,21 @@ define([
 				return false;
 			}
 
-			if(hc("dojoxCalendarMonthLabel")){
+			if(hc("dojoxWidgetCalendarMonthLabel")){
 				clazz = "dojoxCal-MY-M-Template";
 				this._month = evt.target.parentNode.cellIndex + (evt.target.parentNode.parentNode.rowIndex * 2);
 				this._cachedDate.setMonth(this._month);
 				this._updateSelectedMonth();
-			}else if(hc( "dojoxCalendarYearLabel")){
+			}else if(hc( "dojoxWidgetCalendarYearLabel")){
 				clazz = "dojoxCal-MY-Y-Template";
 				this._year = Number(evt.target.innerHTML);
 				this._cachedDate.setYear(this._year);
 				this._populateMonths();
 				this._updateSelectedYear();
-			}else if(hc("dojoxCalendarDecrease")){
+			}else if(hc("dojoxWidgetCalendarDecrease")){
 				this._populateYears(this._displayedYear - 10);
 				return true;
-			}else if(hc("dojoxCalendarIncrease")){
+			}else if(hc("dojoxWidgetCalendarIncrease")){
 				this._populateYears(this._displayedYear + 10);
 				return true;
 			}else{
