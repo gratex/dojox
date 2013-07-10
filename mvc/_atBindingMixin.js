@@ -5,9 +5,8 @@ define([
 	"dojo/has",
 	"dojo/Stateful",
 	"./resolve",
-	"./sync",
-	"./StatefulArray"
-], function(array, lang, declare, has, Stateful, resolve, sync, StatefulArray){
+	"./sync"
+], function(array, lang, declare, has, Stateful, resolve, sync){
 	if(has("mvc-bindings-log-api")){
 		function getLogContent(/*dojo/Stateful*/ target, /*String*/ targetProp){
 			return [target._setIdAttr || !target.declaredClass ? target : target.declaredClass, targetProp].join(":");
@@ -67,7 +66,7 @@ define([
 			var relTarget = parent && (lang.isFunction(parent.get) ? parent.get(relTargetProp) : parent[relTargetProp]),
 			 resolvedSource = resolve(source, relTarget),
 			 resolvedTarget = resolve(target, relTarget);
-			
+
 			if(has("mvc-bindings-log-api") && (!resolvedSource || /^rel:/.test(source) && !parent)){ logResolveFailure(source, sourceProp); }
 			if(has("mvc-bindings-log-api") && (!resolvedTarget || /^rel:/.test(target) && !parent)){ logResolveFailure(target, targetProp); }
 			if(!resolvedSource || !resolvedTarget || (/^rel:/.test(source) || /^rel:/.test(target)) && !parent){ return; }
@@ -86,21 +85,8 @@ define([
 				}
 			}else{
 				// Start data binding
-				//AR, LZ: added feature to ensure creating stateful for nested groups
-				if(!(sourceProp in resolvedSource) && resolvedTarget.declaredClass=="dojox.mvc.Group"){
-					//TODO _isArray added temporarily, how to detect groups bound to arrays?
-					resolvedSource[sourceProp]=resolvedTarget._isArray?new StatefulArray():new Stateful();
-				}
-				//-------------
 				_handles["Two"] = sync(resolvedSource, sourceProp, resolvedTarget, targetProp, options); // dojox/mvc/sync.handle
 			}
-
-			//AR, JU: added feature to ensure clearing fields, no value is found in source
-            //-------------
-            if((!resolvedSource || (lang.isFunction(resolvedSource.get) ? resolvedSource.get(sourceProp) : resolvedSource [sourceProp]) == null) && resolvedTarget && resolvedTarget.reset){
-                resolvedTarget.reset();
-            }
-            //-------------
 		}
 
 		resolveAndBind();
@@ -221,8 +207,6 @@ define([
 			if(this._started){
 				// If this widget has been started already, establish data binding immediately.
 				atWatchHandles[name] = bind(value.target, value.targetProp, this, name, {bindDirection: value.bindDirection, converter: value.converter, equals: value.equalsCallback});
-				//JU: save it to _refs anyway (for future use);
-				this._refs[name] = value;
 			}else{
 				// Otherwise, queue it up to this._refs so that _dbstartup() can pick it up.
 				this._refs[name] = value;
