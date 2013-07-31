@@ -25,6 +25,9 @@ define([
 
 	var RangeSliderMixin = declare("dojox.form._RangeSliderMixin", null, {
 
+		// list attach points that have tabIndex so they can be properly disabled
+		_setTabIndexAttr: ["sliderHandle", "sliderHandleMax"],
+
 		value: [0,100],
 		postMixInProperties: function(){
 			this.inherited(arguments);
@@ -185,11 +188,11 @@ define([
 			// now we set the min/max-value of the slider!
 			var abspos = domGeometry.position(this.sliderBarContainer, true),
 				bar = domGeometry.position(this.progressBar, true),
-				relMousePos = e[this._mousePixelCoord] - abspos[this._startingPixelCoord],
+				mousePos = e[this._mousePixelCoord],
 				leftPos = bar[this._startingPixelCoord],
 				rightPos = leftPos + bar[this._pixelCount],
-				isMaxVal = this._isReversed() ? relMousePos <= leftPos : relMousePos >= rightPos,
-				p = this._isReversed() ? abspos[this._pixelCount] - relMousePos : relMousePos
+				isMaxVal = this._isReversed() ? mousePos <= leftPos : mousePos >= rightPos,
+				p = this._isReversed() ? (abspos[this._pixelCount] - mousePos + abspos[this._startingPixelCoord]) : (mousePos - abspos[this._startingPixelCoord])
 			;
 
 			this._setPixelValue(p, abspos[this._pixelCount], true, isMaxVal);
@@ -270,18 +273,18 @@ define([
 				var propsHandleMax = {};
 				var propsBar = {};
 				// hui, a lot of animations :-)
-				propsHandle[this._handleOffsetCoord] = { start: this.sliderHandle.style[this._handleOffsetCoord], end: sliderHandleVal, units:"%"};
-				propsHandleMax[this._handleOffsetCoord] = { start: this.sliderHandleMax.style[this._handleOffsetCoord], end: sliderHandleMaxVal, units:"%"};
+				propsHandle[this._handleOffsetCoord] = { start: this.sliderHandle.parentNode.style[this._handleOffsetCoord], end: sliderHandleVal, units:"%"};
+				propsHandleMax[this._handleOffsetCoord] = { start: this.sliderHandleMax.parentNode.style[this._handleOffsetCoord], end: sliderHandleMaxVal, units:"%"};
 				propsBar[this._handleOffsetCoord] = { start: this.progressBar.style[this._handleOffsetCoord], end: progressBarVal, units:"%"};
 				propsBar[this._progressPixelSize] = { start: this.progressBar.style[this._progressPixelSize], end: (percentMax - percentMin) * 100, units:"%"};
-				var animHandle = fx.animateProperty({node: this.sliderHandle,duration: duration, properties: propsHandle});
-				var animHandleMax = fx.animateProperty({node: this.sliderHandleMax,duration: duration, properties: propsHandleMax});
-				var animBar = fx.animateProperty({node: this.progressBar,duration: duration, properties: propsBar});
+				var animHandle = fx.animateProperty({node: this.sliderHandle.parentNode, duration: duration, properties: propsHandle});
+				var animHandleMax = fx.animateProperty({node: this.sliderHandleMax.parentNode, duration: duration, properties: propsHandleMax});
+				var animBar = fx.animateProperty({node: this.progressBar, duration: duration, properties: propsBar});
 				var animCombine = fxUtils.combine([animHandle, animHandleMax, animBar]);
 				animCombine.play();
 			}else{
-				this.sliderHandle.style[this._handleOffsetCoord] = sliderHandleVal + "%";
-				this.sliderHandleMax.style[this._handleOffsetCoord] = sliderHandleMaxVal + "%";
+				this.sliderHandle.parentNode.style[this._handleOffsetCoord] = sliderHandleVal + "%";
+				this.sliderHandleMax.parentNode.style[this._handleOffsetCoord] = sliderHandleMaxVal + "%";
 				this.progressBar.style[this._handleOffsetCoord] = progressBarVal + "%";
 				this.progressBar.style[this._progressPixelSize] = ((percentMax - percentMin) * 100) + "%";
 			}

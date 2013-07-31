@@ -213,7 +213,7 @@ var formCheckedMultiSelectMenuItem = declare("dojox.form._CheckedMultiSelectMenu
 	parent: null,
 
 	// icon of the checkbox/radio button
-	_iconClass: "",
+	iconClass: "",
 
 	postMixInProperties: function(){
 		// summary:
@@ -338,7 +338,6 @@ var formCheckedMultiSelect = declare("dojox.form.CheckedMultiSelect", FormSelect
 	startup: function(){
 		// summary:
 		//		Set the value to be the first, or the selected index
-		this.inherited(arguments);
 		if(this.dropDown){
 			this.dropDownButton = new ComboButton({
 				label: this.labelText,
@@ -347,6 +346,7 @@ var formCheckedMultiSelect = declare("dojox.form.CheckedMultiSelect", FormSelect
 				maxHeight: this.maxHeight
 			}, this.comboButtonNode);
 		}
+		this.inherited(arguments);
 	},
 
 	_onMouseDown: function(e){
