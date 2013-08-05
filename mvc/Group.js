@@ -17,6 +17,12 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", 	"dojo/_base/lang"], function
 			// This code needed for ticket 14423 is using removeRepeatNode on a repeat to work with mobile.lists
 			// this.select and this.onCheckStateChanged are called by ListItem so they need to be set
 			// but it seems like a bit of a hack.
+			
+			//AR: added check for started
+			//https://bugs.dojotoolkit.org/ticket/17363#ticket
+			if (this._started) {
+				return;
+			}
 			var parent = null;
 			if(lang.isFunction(this.getParent)){
 				if(this.getParent() && this.getParent().removeRepeatNode){
