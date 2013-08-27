@@ -164,11 +164,10 @@ define([
 					if(!child.started && !child._started){
 						child.startup()
 					}
+				}	catch(e){
+					console.log(this.id + ":" + this.declaredClass, e);
 				}
-				
-			}catch(e){
-				console.log(this.id + ":" + this.declaredClass, e);
-			}});
+			});
 
 			this.inherited(arguments);
 

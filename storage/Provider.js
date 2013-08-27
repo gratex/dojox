@@ -1,7 +1,8 @@
 define(["dojo/_base/declare"], function(declare){
 return declare("dojo.storage.Provider",null,{
 
-	// summary: A singleton for working with dojox.storage.
+	// summary: 
+	//		A singleton for working with dojox.storage.
 	// description:
 	//		dojox.storage exposes the current available storage provider on this
 	//		platform. It gives you methods such as dojox.storage.put(),
@@ -141,7 +142,8 @@ return declare("dojo.storage.Provider",null,{
 		//	namespace:
 		//		Optional string namespace that this value will be retrieved from;
 		//		if left off, the value will be retrieved from dojox.storage.DEFAULT_NAMESPACE
-		// return: Returns any JavaScript object type; null if the key is not present
+		// return: 
+		//		Returns any JavaScript object type; null if the key is not present
 		console.warn("dojox.storage.get not implemented");
 	},
 
@@ -151,8 +153,10 @@ return declare("dojo.storage.Provider",null,{
 	},
 
 	getKeys: function(/*string?*/ namespace){ /*Array*/
-		// summary: Enumerates all of the available keys in this storage system.
-		// return: Array of available keys
+		// summary: 
+		//		Enumerates all of the available keys in this storage system.
+		// return: 
+		//		Array of available keys
 		console.warn("dojox.storage.getKeys not implemented");
 	},
 	
@@ -165,7 +169,8 @@ return declare("dojo.storage.Provider",null,{
 	},
   
 	remove: function(/*string*/ key, /*string?*/ namespace){
-		// summary: Removes the given key from this storage system.
+		// summary: 
+		//		Removes the given key from this storage system.
 		console.warn("dojox.storage.remove not implemented");
 	},
 	
@@ -181,22 +186,23 @@ return declare("dojo.storage.Provider",null,{
 	},
 
 	getMaximumSize: function(){ /* mixed */
-		// summary: The maximum storage allowed by this provider
+		// summary: 
+		//		The maximum storage allowed by this provider
 		// returns:
-		//	Returns the maximum storage size
-		//	supported by this provider, in
-		//	thousands of bytes (i.e., if it
-		//	returns 60 then this means that 60K
-		//	of storage is supported).
+		//		Returns the maximum storage size
+		//		supported by this provider, in
+		//		thousands of bytes (i.e., if it
+		//		returns 60 then this means that 60K
+		//		of storage is supported).
 		//
-		//	If this provider can not determine
-		//	it's maximum size, then
-		//	dojox.storage.SIZE_NOT_AVAILABLE is
-		//	returned; if there is no theoretical
-		//	limit on the amount of storage
-		//	this provider can return, then
-		//	dojox.storage.SIZE_NO_LIMIT is
-		//	returned
+		//		If this provider can not determine
+		//		it's maximum size, then
+		//		dojox.storage.SIZE_NOT_AVAILABLE is
+		//		returned; if there is no theoretical
+		//		limit on the amount of storage
+		//		this provider can return, then
+		//		dojox.storage.SIZE_NO_LIMIT is
+		//		returned
 		console.warn("dojox.storage.getMaximumSize not implemented");
 	},
 		
@@ -258,10 +264,11 @@ return declare("dojo.storage.Provider",null,{
 		//		not in the storage system.
 		// keys:
 		//		An array of string keys to get the value of.
-		//	namespace:
+		// namespace:
 		//		Optional string namespace that this value will be retrieved from;
 		//		if left off, the value will be retrieved from dojox.storage.DEFAULT_NAMESPACE
-		// return: Returns any JavaScript object type; null if the key is not present
+		// return: 
+		//		Returns any JavaScript object type; null if the key is not present
 		
 		var results = [];
 		for(var i = 0; i < keys.length; i++){
@@ -292,18 +299,21 @@ return declare("dojo.storage.Provider",null,{
 	},
 
 	hasSettingsUI: function(){ /*Boolean*/
-		// summary: Determines whether this provider has a settings UI.
+		// summary: 
+		//		Determines whether this provider has a settings UI.
 		return false;
 	},
 
 	showSettingsUI: function(){
-		// summary: If this provider has a settings UI, determined
-		// by calling hasSettingsUI(), it is shown.
+		// summary: 
+		//		If this provider has a settings UI, determined
+		// 		by calling hasSettingsUI(), it is shown.
 		console.warn("dojox.storage.showSettingsUI not implemented");
 	},
 
 	hideSettingsUI: function(){
-		// summary: If this provider has a settings UI, hides it.
+		// summary: 
+		//		If this provider has a settings UI, hides it.
 		console.warn("dojox.storage.hideSettingsUI not implemented");
 	},
 	
@@ -322,18 +332,18 @@ return declare("dojo.storage.Provider",null,{
 	
 	getResourceList: function(){ /* Array[] */
 		// summary:
-		//	Returns a list of URLs that this
-		//	storage provider might depend on.
+		//		Returns a list of URLs that this
+		//		storage provider might depend on.
 		// description:
-		//	This method returns a list of URLs that this
-		//	storage provider depends on to do its work.
-		//	This list is used by the Dojo Offline Toolkit
-		//	to cache these resources to ensure the machinery
-		//	used by this storage provider is available offline.
-		//	What is returned is an array of URLs.
-		//  Note that Dojo Offline uses Gears as its native
-		//  storage provider, and does not support using other
-		//  kinds of storage providers while offline anymore.
+		//		This method returns a list of URLs that this
+		//		storage provider depends on to do its work.
+		//		This list is used by the Dojo Offline Toolkit
+		//		to cache these resources to ensure the machinery
+		//		used by this storage provider is available offline.
+		//		What is returned is an array of URLs.
+		//  	Note that Dojo Offline uses Gears as its native
+		//  	storage provider, and does not support using other
+		//  	kinds of storage providers while offline anymore.
 		
 		return [];
 	}
