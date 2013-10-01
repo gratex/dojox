@@ -1,6 +1,6 @@
 define(["dojo/_base/declare",
-        "dojox/storage/Provider"
-], function(declare, Provider) {
+        "dojox/storage/Provider", "dojo/json", "dojo/_base/array", "dojo/_base/lang"
+], function(declare, Provider, json, array, lang) {
 return declare("dojox.storage.LocalStorageProvider", [Provider], {
 		store: null,
 
@@ -37,7 +37,8 @@ return declare("dojox.storage.LocalStorageProvider", [Provider], {
 			// will result in that prefix not being
 			// usable as a value, so we better use
 			// toJson() always.
-			value = dojo.toJson(value);
+			
+			value = json.stringify(value); 
 
 			try { // ua may raise an QUOTA_EXCEEDED_ERR exception
 				this.store.setItem(fullKey,value);
@@ -60,8 +61,8 @@ return declare("dojox.storage.LocalStorageProvider", [Provider], {
 
 			// get our full key name, which is namespace + key
 			key = this.getFullKey(key, namespace);
-
-			return dojo.fromJson(this.store.getItem(key));
+			
+			return json.parse(this.store.getItem(key)); 
 		},
 
 		getKeys: function(/*string?*/ namespace){ /*Array*/
@@ -100,8 +101,7 @@ return declare("dojox.storage.LocalStorageProvider", [Provider], {
 					keys.push(this.store.key(i));
 				}
 			}
-
-			dojo.forEach(keys, dojo.hitch(this.store, "removeItem"));
+			array.forEach(keys, lang.hitch(this.store, "removeItem"));
 		},
 
 		remove: function(/*string*/ key, /*string?*/ namespace){
