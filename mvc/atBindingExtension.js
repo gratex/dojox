@@ -28,8 +28,6 @@ define([
 
 			// Monkey patch widget.startup to get data binds set up
 			aspect.before(w, "startup", function(){
-				//AR: added check for started
-				//https://bugs.dojotoolkit.org/ticket/17363#ticket
 				if(this._started){
 					return;
 				}
