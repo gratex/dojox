@@ -2,8 +2,8 @@ define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
 	"dojo/_base/array",
-	"dojo"
-],function(declare, lang, arrayUtil, dojo){
+	"dojo/_base/event"
+],function(declare, lang, arrayUtil, event){
 
 	return declare("dojox.form.uploader._HTML5", [], {
 		// summary:
@@ -37,7 +37,7 @@ define([
 		},
 	
 		_drop: function(e){
-			dojo.stopEvent(e);
+			event.stop(e);
 			var dt = e.dataTransfer;
 			this._files = dt.files;
 			this.onChange(this.getFileList());
@@ -65,9 +65,9 @@ define([
 			//		This API is only available in HTML5 plugin (only HTML5 allows
 			//		DnD files).
 			if(!onlyConnectDrop){
-				this.connect(node, 'dragenter', dojo.stopEvent);
-				this.connect(node, 'dragover', dojo.stopEvent);
-				this.connect(node, 'dragleave', dojo.stopEvent);
+				this.connect(node, 'dragenter', event.stop);
+				this.connect(node, 'dragover', event.stop);
+				this.connect(node, 'dragleave', event.stop);
 			}
 			this.connect(node, 'drop', '_drop');
 		},
