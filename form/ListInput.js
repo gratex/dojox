@@ -1017,5 +1017,7 @@ var _ListInputInputBox = declare("dojox.form._ListInputInputBox", [ValidationTex
 		this.inherited(arguments);
 	}
 });
+//AR: export also _ListInputInputItem, so we can extend it
+ListInput._ListInputInputItem=_ListInputInputItem;
 return ListInput;
 });
