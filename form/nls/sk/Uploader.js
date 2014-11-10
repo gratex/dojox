@@ -1,5 +1,9 @@
 define(
 ({
-	label: "Vybrať súbory..."
+	label: "Vybrať súbory...",
+	index:"#",
+	type:"Typ",
+	fileName:"Meno súboru",
+	fileSize:"Veľkosť"
 })
 );
