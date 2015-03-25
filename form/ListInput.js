@@ -526,7 +526,9 @@ var ListInput = declare("dojox.form.ListInput", [FormValueWidget],
 		//		private
 		if(!this.readOnlyItem){
 			for(var i in this._items){
-				this._items[i].set("disabled", value);
+				//AR: some items may have been deleted (have null value now)
+				this._items[i] && this._items[i].set("disabled", value);
+				//this._items[i].set("disabled", value);
 			}
 		}
 
