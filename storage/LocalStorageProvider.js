@@ -1,21 +1,23 @@
-define(["dojo/_base/declare",
-        "dojox/storage/Provider", "dojo/json", "dojo/_base/array", "dojo/_base/lang"
-], function(declare, Provider, json, array, lang) {
-return declare("dojox.storage.LocalStorageProvider", [Provider], {
+define([
+	"dojo/_base/declare",
+	"dojox/storage/Provider",
+	"dojox/storage/manager",
+	"dojo/_base/array",
+	"dojo/_base/lang",
+	"dojo/json"
+], function(declare, Provider, storageManager, array, lang, JSON){
+	var LocalStorageProvider = declare("dojox.storage.LocalStorageProvider", [Provider], {
 		store: null,
-
 		initialize: function(){
 
 			this.store = localStorage;
 
 			this.initialized = true;
-			require(["dojox/storage/manager"], function(manager) {
-				manager.loaded();
-			});
+			storageManager.loaded();
 		},
 
 		isAvailable: function(){ /*Boolean*/
-			return typeof localStorage != 'undefined';
+			return typeof localStorage != "undefined";
 		},
 
 		put: function(	/*string*/ key,
@@ -37,8 +39,7 @@ return declare("dojox.storage.LocalStorageProvider", [Provider], {
 			// will result in that prefix not being
 			// usable as a value, so we better use
 			// toJson() always.
-			
-			value = json.stringify(value); 
+			value = JSON.stringify(value);
 
 			try { // ua may raise an QUOTA_EXCEEDED_ERR exception
 				this.store.setItem(fullKey,value);
@@ -61,8 +62,8 @@ return declare("dojox.storage.LocalStorageProvider", [Provider], {
 
 			// get our full key name, which is namespace + key
 			key = this.getFullKey(key, namespace);
-			
-			return json.parse(this.store.getItem(key)); 
+
+			return JSON.parse(this.store.getItem(key));
 		},
 
 		getKeys: function(/*string?*/ namespace){ /*Array*/
@@ -101,6 +102,7 @@ return declare("dojox.storage.LocalStorageProvider", [Provider], {
 					keys.push(this.store.key(i));
 				}
 			}
+
 			array.forEach(keys, lang.hitch(this.store, "removeItem"));
 		},
 
@@ -197,10 +199,7 @@ return declare("dojox.storage.LocalStorageProvider", [Provider], {
 			}
 		}
 	});
-});
 
-require(["dojox/storage/manager",
-         "dojox/storage/LocalStorageProvider"
-], function(manager, LocalStorageProvider){
-	manager.register("dojox.storage.LocalStorageProvider", new LocalStorageProvider());
+	storageManager.register("dojox.storage.LocalStorageProvider", new LocalStorageProvider());
+	return LocalStorageProvider;
 });

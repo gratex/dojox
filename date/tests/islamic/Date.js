@@ -897,7 +897,12 @@ tests.register("dojox.date.tests.islamic.Date",
 			                 [1448,1,14,2026,6,30],
 			                 [1448,1,25,2026,7,10],
 			                 [1448,2,7,2026,7,21],
-			                 [1448,2,18,2026,8,1]
+			                 [1448,2,18,2026,8,1],
+					 //test a month before a leap year
+					 [1420,7,22,1999,11,1],
+					 [1424,9,6,2003,11,1],
+					 [1428,10,21,2007,11,1],
+					 [1433,0,5,2011,11,1]
 			
 			];
 			
@@ -1867,7 +1872,7 @@ tests.register("dojox.date.tests.islamic.Date",
 			        [1202,1,15,1],
 			        [1202,1,18,4],
 			        [1202,1,19,5],
-			        [1202,1,20,5]
+			        [1202,1,20,6]
 								
 				];
 				dojo.forEach(dateTable, function(d, i) {
@@ -1944,11 +1949,11 @@ tests.register("dojox.date.tests.islamic.Date",
 				var dateIslamic = new dojox.date.islamic.Date(1431, 4, 6);
 
 
-				var amouts = [2, 5, 6, 7, 8, 12, 18, 20, 24, 50, -3, -4, -5, -6, -7, -8, -9, -10, -50, 200, -200, 29, -29, 1, -1,
+				var amounts = [2, 5, 6, 7, 8, 12, 18, 20, 24, 50, -3, -4, -5, -6, -7, -8, -9, -10, -50, 200, -200, 29, -29, 1, -1,
 				              23, 25];
 				var dateIslamicAdd;
 
-				dojo.forEach(amouts, function(amount, i) {
+				dojo.forEach(amounts, function(amount, i) {
 					dateIslamicAdd = dojox.date.islamic.add(dateIslamic, "month", amount);
 					t.is(dojox.date.islamic.difference(dateIslamic, dateIslamicAdd, "month"), amount);
 

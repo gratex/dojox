@@ -17,21 +17,18 @@ var profile = (function(){
 			"secure",
 			"data/(demos|ItemExplorer|StoreExplorer|restListener)",
 			"drawing/plugins/drawing/Silverlight",
-			"editor/plugins/(ResizeTableColumn|SpellCheck)",
 			"embed/(IE)",
 			"flash/_base",
 			"help",
 			"image/(Gallery|SlideShow|ThumbnailPicker)",
 			"jq",
-			"jsonPath/query",
 			"lang/(aspect|async|docs|observable|oo|typed|functional/(binrec|curry|linrec|listcomp|multirec|numrec|tailrec|util|zip))",
 			"layout/(BorderContainer|dnd|ext-dijit)",
 			"mobile/app/",
 			"rails",
 			"robot",
-			"socket/Reconnect",
 			"sql/",
-			"storage/",
+			"storage/(_common|AirDBStorageProvider|AirEncryptedLocalStorageProvider|AirFileStorageProvider|BehaviorStorageProvider|CookieStorageProvider|FlashStorageProvider|GearsStorageProvider|WhatWGStorageProvider)",
 			"widget/(AnalogGauge|BarGauge|DataPresentation|DocTester|DynamicTooltip|FeedPortlet|FilePicker|gauge|Iterator|Loader|RollingList|SortList)",
 			"wire/",
 			"xmpp"
@@ -58,7 +55,7 @@ var profile = (function(){
 			},
 
 			miniExclude: function(filename, mid){
-				return 0;
+				return /\/demos\//.test(mid);
 			}
 		}
 	};

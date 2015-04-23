@@ -5,6 +5,7 @@ define([
 	"dojo/_base/lang",
 	"dojo/_base/window",
 	"dojo/_base/kernel",
+	"dojo/dom",
 	"dojo/dom-class",
 	"dojo/dom-construct",
 	"dojo/domReady",
@@ -13,7 +14,7 @@ define([
 	"dijit/registry",
 	"./sniff",
 	"./uacss" // (no direct references)
-], function(array, config, connect, lang, win, kernel, domClass, domConstruct, domReady, ready, touch, registry, has){
+], function(array, config, connect, lang, win, kernel, dom, domClass, domConstruct, domReady, ready, touch, registry, has){
 
 	// module:
 	//		dojox/mobile/common
@@ -298,11 +299,40 @@ define([
 			config.mblAndroid3Workaround !== false && has('android') >= 3, undefined, true);
 
 	dm._detectWindowsTheme();
-	
+
+	dm.setSelectable = function(/*Node*/node, /*Boolean*/selectable){
+		var nodes, i;
+		node = dom.byId(node);
+		if (has("ie") <= 9){
+			// (IE < 10) Fall back to setting/removing the
+			// unselectable attribute on the element and all its children
+			// except the input element (see https://bugs.dojotoolkit.org/ticket/13846)
+			nodes = node.getElementsByTagName("*");
+			i = nodes.length;
+			if(selectable){
+				node.removeAttribute("unselectable");
+				while(i--){
+					nodes[i].removeAttribute("unselectable");
+				}
+			}else{
+				node.setAttribute("unselectable", "on");
+				while(i--){
+					if (nodes[i].tagName !== "INPUT"){
+						nodes[i].setAttribute("unselectable", "on");
+					}
+				}
+			}
+		}else{
+			domClass.toggle(node, "unselectable", !selectable);
+		}
+	};
+
 	// Set the background style using dojo/domReady, not dojo/ready, to ensure it is already
 	// set at widget initialization time. (#17418) 
 	domReady(function(){
-		domClass.add(win.body(), "mblBackground");
+		if(config.mblApplyPageStyles !== false){
+			domClass.add(win.body(), "mblBackground");
+		}
 	});
 
 	ready(function(){
@@ -350,7 +380,7 @@ define([
 						connect.disconnect(_conn);
 						_f(e);
 					});
-				}
+				};
 				curSize = dm.getScreenSize();
 			};
 			// Android: Watch for resize events when the virtual keyboard is shown/hidden.

@@ -127,9 +127,16 @@ define(["dojo/_base/lang", "dojo/_base/declare", "dojo/_base/array", "dojo/has",
 					continue;
 				}
 				run.cleanGroup();
-				s = run.group;
 				var theme = t.next("candlestick", [this.opt, run]),
 					eventSeries = new Array(run.data.length);
+
+				if(run.hidden){
+					run.dyn.fill = theme.series.fill;
+					run.dyn.stroke =  theme.series.stroke;
+					continue;
+				}
+				s = run.group;
+                
 				for(var j = 0; j < run.data.length; ++j){
 					var v = run.data[j];
 					if(v !== null){
@@ -168,7 +175,7 @@ define(["dojo/_base/lang", "dojo/_base/declare", "dojo/_base/array", "dojo/has",
 							if("mid" in v){
 								//	add the mid line.
 								inner.createLine({
-									x1: (finalTheme.series.stroke.width||1), x2: width - (finalTheme.series.stroke.width || 1),
+										x1: (finalTheme.series.stroke ? finalTheme.series.stroke.width || 1 : 1), x2: width - (finalTheme.series.stroke ? finalTheme.series.stroke.width || 1 : 1),
 									y1: y - mid, y2: y - mid
 								}).setStroke(doFill ? "white" : finalTheme.series.stroke);
 							}

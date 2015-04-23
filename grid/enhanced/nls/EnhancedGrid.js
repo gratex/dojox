@@ -7,8 +7,8 @@ define({ root:
 	descending: "Click to sort Descending",
 	sortingState: "${0} - ${1}",
 	unsorted: "Do not sort this column",
-	indirectSelectionRadio: "Row ${0}, single selection, radio box",
-	indirectSelectionCheckBox: "Row ${0}, multiple selection, check box",
+	indirectSelectionRadio: "Row ${0}, single selection",
+	indirectSelectionCheckBox: "Row ${0}, multiple selection",
 	selectAll: "Select all"
 })
 //end v1.x content
@@ -19,6 +19,7 @@ define({ root:
 "cs": true,
 "da": true,
 "de": true,
+"eu": true,
 "el": true,
 "es": true,
 "fi": true,
@@ -27,6 +28,7 @@ define({ root:
 "hr": true,
 "hu": true,
 "hr": true,
+"id": true,
 "it": true,
 "ja": true,
 "kk": true,

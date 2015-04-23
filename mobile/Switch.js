@@ -149,7 +149,7 @@ define([
 				domStyle.set(this.right.firstChild, "width", innWidth);
 				domStyle.set(this.knob, "left", innWidth);
 				if(this.value == "off"){
-					domStyle.set(this.inner, "left", "-" + innWidth);
+					domStyle.set(this.inner, "left", this.isLeftToRight()?("-" + innWidth):0);
 				}
 				this._hasMaskImage = false;
 				this._createMaskImage();
@@ -189,7 +189,7 @@ define([
 			var w = domStyle.get(this.domNode,"width"), h = domStyle.get(this.domNode,"height");
 			this._width = (w - domStyle.get(this.knob,"width"));
 			this._hasMaskImage = true;
-			if(!(has("webkit")||has("svg"))){ return; }
+			if(!(has("mask-image"))){ return; }
 			var rDef = domStyle.get(this.left, "borderTopLeftRadius");
 			if(rDef == "0px"){ return; }
 			var rDefs = rDef.split(" ");
