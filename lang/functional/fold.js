@@ -29,7 +29,7 @@ define(["dojo/_base/lang", "dojo/_base/array", "dojo/_base/kernel", "./lambda"],
 			if(typeof a == "string"){ a = a.split(""); }
 			o = o || kernel.global; f = df.lambda(f);
 			var i, n;
-			if(lang.isArray(a)){
+			if(lang.isArrayLike(a)){
 				// array
 				for(i = 0, n = a.length; i < n; z = f.call(o, z, a[i], i, a), ++i);
 			}else if(typeof a.hasNext == "function" && typeof a.next == "function"){
@@ -52,7 +52,7 @@ define(["dojo/_base/lang", "dojo/_base/array", "dojo/_base/kernel", "./lambda"],
 			if(typeof a == "string"){ a = a.split(""); }
 			o = o || kernel.global; f = df.lambda(f);
 			var z, i, n;
-			if(lang.isArray(a)){
+			if(lang.isArrayLike(a)){
 				// array
 				z = a[0];
 				for(i = 1, n = a.length; i < n; z = f.call(o, z, a[i], i, a), ++i);

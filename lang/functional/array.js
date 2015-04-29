@@ -26,7 +26,7 @@ define(["dojo/_base/kernel", "dojo/_base/lang", "dojo/_base/array", "./lambda"],
 			if(typeof a == "string"){ a = a.split(""); }
 			o = o || kernel.global; f = df.lambda(f);
 			var t = [], v, i, n;
-			if(lang.isArray(a)){
+			if(lang.isArrayLike(a)){
 				// array
 				for(i = 0, n = a.length; i < n; ++i){
 					v = a[i];
@@ -55,7 +55,7 @@ define(["dojo/_base/kernel", "dojo/_base/lang", "dojo/_base/array", "./lambda"],
 			if(typeof a == "string"){ a = a.split(""); }
 			o = o || kernel.global; f = df.lambda(f);
 			var i, n;
-			if(lang.isArray(a)){
+			if(lang.isArrayLike(a)){
 				// array
 				for(i = 0, n = a.length; i < n; f.call(o, a[i], i, a), ++i);
 			}else if(typeof a.hasNext == "function" && typeof a.next == "function"){
@@ -78,7 +78,7 @@ define(["dojo/_base/kernel", "dojo/_base/lang", "dojo/_base/array", "./lambda"],
 			if(typeof a == "string"){ a = a.split(""); }
 			o = o || kernel.global; f = df.lambda(f);
 			var t, n, i;
-			if(lang.isArray(a)){
+			if(lang.isArrayLike(a)){
 				// array
 				t = new Array(n = a.length);
 				for(i = 0; i < n; t[i] = f.call(o, a[i], i, a), ++i);
@@ -104,7 +104,7 @@ define(["dojo/_base/kernel", "dojo/_base/lang", "dojo/_base/array", "./lambda"],
 			if(typeof a == "string"){ a = a.split(""); }
 			o = o || kernel.global; f = df.lambda(f);
 			var i, n;
-			if(lang.isArray(a)){
+			if(lang.isArrayLike(a)){
 				// array
 				for(i = 0, n = a.length; i < n; ++i){
 					if(!f.call(o, a[i], i, a)){
@@ -137,7 +137,7 @@ define(["dojo/_base/kernel", "dojo/_base/lang", "dojo/_base/array", "./lambda"],
 			if(typeof a == "string"){ a = a.split(""); }
 			o = o || kernel.global; f = df.lambda(f);
 			var i, n;
-			if(lang.isArray(a)){
+			if(lang.isArrayLike(a)){
 				// array
 				for(i = 0, n = a.length; i < n; ++i){
 					if(f.call(o, a[i], i, a)){
@@ -164,6 +164,6 @@ define(["dojo/_base/kernel", "dojo/_base/lang", "dojo/_base/array", "./lambda"],
 			return false;	// Boolean
 		}
 	});
-	
+
 	return df;
 });

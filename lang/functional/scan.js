@@ -25,7 +25,7 @@ define(["dojo/_base/kernel", "dojo/_base/lang", "./lambda"], function(kernel, la
 			if(typeof a == "string"){ a = a.split(""); }
 			o = o || kernel.global; f = df.lambda(f);
 			var t, n, i;
-			if(lang.isArray(a)){
+			if(lang.isArrayLike(a)){
 				// array
 				t = new Array((n = a.length) + 1);
 				t[0] = z;
@@ -53,7 +53,7 @@ define(["dojo/_base/kernel", "dojo/_base/lang", "./lambda"], function(kernel, la
 			if(typeof a == "string"){ a = a.split(""); }
 			o = o || kernel.global; f = df.lambda(f);
 			var t, n, z, first = true;
-			if(lang.isArray(a)){
+			if(lang.isArrayLike(a)){
 				// array
 				t = new Array(n = a.length);
 				t[0] = z = a[0];
