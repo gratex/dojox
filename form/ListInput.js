@@ -755,7 +755,7 @@ var ListInput = declare("dojox.form.ListInput", [FormValueWidget],
 		this._destroyAllItems();
 		this._lastAddedItem = null;
 
-		if(!this._input){
+		if(this._input){
 			this._input.destroy();
 		}
 
