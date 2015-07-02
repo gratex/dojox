@@ -165,7 +165,8 @@ define([
 
 				// Call watch callbacks for properties.
 				for(var s in props){
-					callback.call(_self, s, !old ? void 0 : old.get ? old.get(s) : old[s], !current ? void 0 : current.get ? current.get(s) : current[s]);
+					callback.call(_self, s, !old ? void 0 : old.get ? old.get(s) : old[s], !current ? void 0 : current.get ? current.get(s) : current[s], 
+							/* JU: to signify that cause is change of whole model: */ true);
 				}
 			}
 
