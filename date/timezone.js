@@ -29,8 +29,8 @@ function(arrayUtil, config, declare, kernel, lang, dateUtil, localeUtil, request
 					"southamerica.txt" ];
 
 	// Our mins an maxes for years that we care about
-	var _minYear = 100,
-		_maxYear = 10000;
+	var _minYear = 1835,
+		_maxYear = 2038;
 
 	var _loadedZones = {},
 		_zones = {},
@@ -38,7 +38,7 @@ function(arrayUtil, config, declare, kernel, lang, dateUtil, localeUtil, request
 		_rules = {};
 
 	// loadingScheme: String
-	//		One of "preloadAll", "lazyLoad" (Defaults "lazyLoad")
+	//		One of "preloadAll", "lazyLoad" (Defaults "preloadAll")
 	var loadingScheme = config.timezoneLoadingScheme || "preloadAll";
 
 	// defaultZoneFile: String or String[]

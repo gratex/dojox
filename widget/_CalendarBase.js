@@ -144,8 +144,8 @@ define([
 			//Populate the footer with today's date.
 			var today = new Date();
 
-			this.footer.innerHTML = "Today: "
-				+ dojoDateLocale.format(today, {
+			this.footer.innerHTML = "Today: " +
+				dojoDateLocale.format(today, {
 					formatLength:this.footerFormat,
 					selector:'date',
 					locale:this.lang});
@@ -207,7 +207,7 @@ define([
 				value = new Date(value);
 				this.displayMonth = new Date(value);
 				this._internalValue = value;
-				if(!this.isDisabledDate(value, this.lang) && this._currentChild == 0){
+				if(!this.isDisabledDate(value, this.lang) && this._currentChild === 0){
 					this.value = value;
 					this.onChange(value);
 				}
@@ -216,7 +216,7 @@ define([
 				}
 				return true;
 			}
-			this.onExecute(); 
+			this.onExecute();
 			return false;
 		},
 
@@ -382,9 +382,17 @@ define([
 			this._slideTable(child, amount, function(){
 				child.set("value", month);
 			});
+<<<<<<< HEAD
 		}, 
 		
 		onExecute:function(){
+=======
+		},
+
+		onExecute:function(){
+			// summary:
+			//		Stub for child classes to override.
+>>>>>>> upstream/master
 		}
 	});
 });
