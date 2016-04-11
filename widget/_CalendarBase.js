@@ -382,17 +382,11 @@ define([
 			this._slideTable(child, amount, function(){
 				child.set("value", month);
 			});
-<<<<<<< HEAD
-		}, 
-		
-		onExecute:function(){
-=======
 		},
 
 		onExecute:function(){
 			// summary:
 			//		Stub for child classes to override.
->>>>>>> upstream/master
 		}
 	});
 });
