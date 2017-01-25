@@ -262,7 +262,7 @@ define([
 
 	mixin[mixin.dataBindAttr] = ""; // Let parser treat the attribute as string
 
-	var _atBindingMixin = declare("dojox/mvc/_atBindingMixin", null, mixin);
+	var _atBindingMixin = declare("dojox.mvc._atBindingMixin", null, mixin);
 	_atBindingMixin.mixin = mixin; // Keep the plain object version
 	return _atBindingMixin;
 });
