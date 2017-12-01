@@ -71,6 +71,36 @@ define(["dojo/_base/kernel", "dojo/_base/lang", "./lambda"], function(kernel, la
 				}
 			}
 			return t;	// Object
+		},
+		everyIn: function(/*Object*/ obj, /*Function|String|Array*/ f, /*Object?*/ o){
+			// summary:
+			//		tests whether all value-key in the object passes the test
+			//		implemented by the provided function.
+			o = o || kernel.global; f = df.lambda(f);
+			var t = {}, i;
+			for(i in obj){
+				if(!(i in empty)){
+					if(!f.call(o, obj[i], i, obj)){
+						return false;
+					}
+				}
+			}
+			return true;	// Boolean
+		},
+		someIn: function(/*Object*/ obj, /*Function|String|Array*/ f, /*Object?*/ o){
+			// summary:
+			//		tests whether some value-key in the object passes the test
+			//		implemented by the provided function.
+			o = o || kernel.global; f = df.lambda(f);
+			var t = {}, i;
+			for(i in obj){
+				if(!(i in empty)){
+					if(f.call(o, obj[i], i, obj)){
+						return true;
+					}
+				}
+			}
+			return false;	// Boolean
 		}
 	});
 	
