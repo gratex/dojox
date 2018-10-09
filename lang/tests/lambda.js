@@ -17,4 +17,11 @@ dojo.require("dojox.lang.functional.sequence");
 		function testLambda9(t){ t.assertEqual(df.repeat(3, function(n){ return n * 3; }, 1), [1, 3, 9]); },
 		function testLambda10(t){ t.assertEqual(df.repeat(3, ["_-1", ["*3"]], 1), [1, 2, 5]); }
 	]);
+	
+	tests.register("dojox.lang.tests.lambda keywords", [
+		function testLambda1(t){ t.assertEqual(df.lambda("a=a+1")(1), 2); },
+		function testLambda2(t){ t.assertEqual(df.lambda("ina=ina+1")(1), 2); },
+		function testLambda3(t){ t.assertEqual(df.lambda("dojoa=dojoa+1")(1), 2); },
+		function testLambda4(t){ t.assertEqual(df.lambda("dojo._scopeName")(), "dojo"); },
+	]);
 })();

@@ -55,7 +55,7 @@ define(["../..", "dojo/_base/lang", "dojo/_base/array"], function(dojox, lang, a
 				// the point of the long regex below is to exclude all well-known
 				// lower-case words from the list of potential arguments
 				var vars = s.
-					replace(/(?:\b[A-Z]|\.[a-zA-Z_$])[a-zA-Z_$\d]*|[a-zA-Z_$][a-zA-Z_$\d]*:|this|true|false|null|undefined|typeof|instanceof|in|delete|new|void|arguments|decodeURI|decodeURIComponent|encodeURI|encodeURIComponent|escape|eval|isFinite|isNaN|parseFloat|parseInt|unescape|dojo|dijit|dojox|window|document|'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"/g, "").
+					replace(/(?:\b[A-Z]|\.[a-zA-Z_$])[a-zA-Z_$\d]*|[a-zA-Z_$][a-zA-Z_$\d]*:|\b(this|true|false|null|undefined|typeof|instanceof|in|delete|new|void|arguments|decodeURI|decodeURIComponent|encodeURI|encodeURIComponent|escape|eval|isFinite|isNaN|parseFloat|parseInt|unescape|dojo|dijit|dojox|window|document)\b|'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"/g, "").
 					match(/([a-z_$][a-z_$\d]*)/gi) || [], t = {};
 				arr.forEach(vars, function(v){
 					if(!t.hasOwnProperty(v)){
@@ -65,7 +65,7 @@ define(["../..", "dojo/_base/lang", "dojo/_base/array"], function(dojox, lang, a
 				});
 			}
 		}
-		return {args: args, body: s};	// Object
+		return {args: args, body: s};	// Object	
 	};
 
 	var compose = function(/*Array*/ a){
