@@ -22,7 +22,6 @@ var profile = (function(){
 			"data/(demos|ItemExplorer|StoreExplorer|restListener)",
 			"drawing/plugins/drawing/Silverlight",
 			"embed/(IE)",
-			"flash/_base",
 			"help",
 			"image/(Gallery|SlideShow|ThumbnailPicker)",
 			"jq",
@@ -31,8 +30,7 @@ var profile = (function(){
 			"mobile/app/",
 			"rails",
 			"robot",
-			"sql/",
-			"storage/(_common|AirDBStorageProvider|AirEncryptedLocalStorageProvider|AirFileStorageProvider|BehaviorStorageProvider|CookieStorageProvider|FlashStorageProvider|GearsStorageProvider|WhatWGStorageProvider)",
+			"storage/(AirDBStorageProvider|AirEncryptedLocalStorageProvider|AirFileStorageProvider)",
 			"widget/(AnalogGauge|BarGauge|DataPresentation|DocTester|DynamicTooltip|FeedPortlet|FilePicker|gauge|Iterator|Loader|RollingList|SortList)",
 			"wire/",
 			"xmpp"
