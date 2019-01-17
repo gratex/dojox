@@ -248,11 +248,11 @@ function(arrayUtil, config, declare, kernel, lang, dateUtil, localeUtil, request
 					return getRegionForTimezone(link); // String
 				}else{
 					// Backward-compat file hasn't loaded yet, try looking in there
-					if (!_loadedZones.backward) {
+					if (!_loadedZones["backward.txt"]) {
 						// This is for obvious legacy zones (e.g., Iceland) that
 						// don't even have a prefix like "America/" that look like
 						// normal zones
-						loadZoneFile("backward");
+						loadZoneFile("backward.txt");
 						return getRegionForTimezone(tz); // String
 					}else{
 						invalidTZError(tz);
@@ -506,7 +506,7 @@ function(arrayUtil, config, declare, kernel, lang, dateUtil, localeUtil, request
 		}
 		if(!zoneList){
 			// Backward-compat file hasn't loaded yet, try looking in there
-			if(!_loadedZones.backward){
+			if(!_loadedZones["backward.txt"]){
 				// This is for backward entries like "America/Fort_Wayne" that
 				// getRegionForTimezone *thinks* it has a region file and zone
 				// for (e.g., America => 'northamerica'), but in reality it's a
