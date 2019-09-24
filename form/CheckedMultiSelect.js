@@ -344,14 +344,18 @@ var formCheckedMultiSelect = declare("dojox.form.CheckedMultiSelect", FormSelect
 		// summary:
 		//		Set the value to be the first, or the selected index
 		if(this.dropDown){
-			this.dropDownButton = new ComboButton({
-				label: this.labelText,
-				dropDown: this.dropDownMenu,
-				baseClass: "dojoxCheckedMultiSelectButton",
-				maxHeight: this.maxHeight
-			}, this.comboButtonNode);
+			this._createDropDown();
 		}
 		this.inherited(arguments);
+	},
+
+	_createDropDown: function(){ // GTI: added to override in extension
+		this.dropDownButton = new ComboButton({
+			label: this.labelText,
+			dropDown: this.dropDownMenu,
+			baseClass: "dojoxCheckedMultiSelectButton",
+			maxHeight: this.maxHeight
+		}, this.comboButtonNode);
 	},
 
 	_onMouseDown: function(e){
